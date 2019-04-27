@@ -13,6 +13,9 @@ var app = express();
 //Set up the Express Router
 var router = express.Router();
 
+//require route file pass router object
+require("./config/routes")(router);
+
 //Designate public folder
 app.use(express.static(router + "/public"));
 
@@ -22,18 +25,17 @@ app.engine("handlebars", expressHandlebars({
 }));
 app.set("view engine", "handlebars");
 
-
 //use bodyParser in app
 app.use(bodyParser.urlencoded({
     extended: false
 }));
-
 
 //Have every reqeust go through router middleware
 app.use(router);
 
 //if deployed, use the deployed database, otherwise use the local mongoHeadLines database
 var db = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadLines";
+
 
 //connect mongoose to our database
 mongoose.connect(db, function (error) {
@@ -43,6 +45,7 @@ mongoose.connect(db, function (error) {
     }
     //or log a success message
     else {
+        { useNewUrlParser: true };
         console.log("mongoose connection is successful");
     }
 });
