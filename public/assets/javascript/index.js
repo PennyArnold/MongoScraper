@@ -13,7 +13,7 @@ $(document).ready(function () {
     function initPage() {
         //emply the article container, run an AJAX request for any unsaved headlines
         articleContainer.empty();
-        $.get("/api/headlines?saved=fales")
+        $.get("/api/headlines?saved=false")
             .then(function (data) {
                 //if we have headlines, render them to the page
                 if (data && data.length) {
@@ -87,7 +87,7 @@ $(document).ready(function () {
         var articleToSave =
     
 
-});
+}
 
 
 function renderNotesList(data) {
@@ -213,6 +213,6 @@ $.ajax({
 
 });
 
-};
+
 
 

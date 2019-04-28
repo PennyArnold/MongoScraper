@@ -17,7 +17,8 @@ var router = express.Router();
 require("./config/routes")(router);
 
 //Designate public folder
-app.use(express.static(router + "/public"));
+// app.use(express.static(router + "/public"));
+app.use(express.static("public"));
 
 //connect handlebars to express app
 app.engine("handlebars", expressHandlebars({
@@ -45,7 +46,7 @@ mongoose.connect(db, function (error) {
     }
     //or log a success message
     else {
-        { useNewUrlParser: true };
+        //  useNewUrlParser: true;
         console.log("mongoose connection is successful");
     }
 });
